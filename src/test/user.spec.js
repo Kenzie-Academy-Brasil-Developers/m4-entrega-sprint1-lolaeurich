@@ -25,7 +25,7 @@ const loginNotAdm = {
   password: "123456",
 };
 
-describe("Testes rota POST /users", () => {
+/*describe("Testes rota POST /users", () => {
   it("Testando criação de usuário com um corpo correto", async () => {
     const response = await request(app).post("/users").send(userAdm);
 
@@ -43,7 +43,10 @@ describe("Testes rota POST /users", () => {
     const response = await request(app).post("/users").send(userAdm);
 
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "E-mail already registered"
+    );
   });
 });
 
@@ -61,11 +64,13 @@ describe("Testando rota POST /login", () => {
     const response = await request(app).post("/login").send(loginAdm);
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty("message", "Wrong email/password");
     loginAdm.password = "123456";
   });
-});
+});*/
 
+
+//AQUI
 describe("Testando rota GET /users", () => {
   it("Testando listagem de usuários", async () => {
     const login = await request(app).post("/login").send(loginAdm);
@@ -83,7 +88,10 @@ describe("Testando rota GET /users", () => {
     const response = await request(app).get("/users");
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "Missing authorization headers"
+    );
   });
 
   it("Testando listagem de usuários sem autorização", async () => {
@@ -95,11 +103,13 @@ describe("Testando rota GET /users", () => {
       .set("Authorization", `Bearer ${token}`);
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty("message", "Unauthorized");
   });
 });
 
-describe("Testando rota GET /users/profile", () => {
+//até aqui
+
+/*describe("Testando rota GET /users/profile", () => {
   it("Testando listagem do perfil de usuário", async () => {
     const login = await request(app).post("/login").send(loginNotAdm);
     const { token } = login.body;
@@ -120,7 +130,10 @@ describe("Testando rota GET /users/profile", () => {
     const response = await request(app).get("/users/profile");
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "Missing authorization headers"
+    );
   });
 });
 
@@ -147,7 +160,10 @@ describe("Testando rota PATCH /users/<uuid>", () => {
       .send(updateNotAdm);
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "Missing authorization headers"
+    );
   });
 
   it("Testando atualização do próprio usuário sem permissão de ADM", async () => {
@@ -187,7 +203,10 @@ describe("Testando rota PATCH /users/<uuid>", () => {
       .set("Authorization", `Bearer ${tokenNotAdm}`);
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "Missing admin permissions"
+    );
   });
 
   it("Testando atualização de qualquer usuário com permissão de ADM", async () => {
@@ -220,7 +239,10 @@ describe("Testando rota DELETE /users/<uuid>", () => {
     const response = await request(app).delete(`/users/${user.body.uuid}`);
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "Missing authorization headers"
+    );
   });
 
   it("Testando deleção de outro usuário sem permissão de ADM", async () => {
@@ -238,7 +260,10 @@ describe("Testando rota DELETE /users/<uuid>", () => {
       .set("Authorization", `Bearer ${tokenNotAdm}`);
 
     expect(response.status).toBe(401);
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "Missing admin permissions"
+    );
   });
 
   it("Testando deleção de outro usuário com permissão de ADM", async () => {
@@ -255,7 +280,10 @@ describe("Testando rota DELETE /users/<uuid>", () => {
       .delete(`/users/${notAdm.body.uuid}`)
       .set("Authorization", `Bearer ${tokenAdm}`);
 
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "User deleted with success"
+    );
   });
 
   it("Testando deleção do próprio usuário", async () => {
@@ -269,6 +297,9 @@ describe("Testando rota DELETE /users/<uuid>", () => {
       .delete(`/users/${user.body.uuid}`)
       .set("Authorization", `Bearer ${token}`);
 
-    expect(response.body).toHaveProperty("message");
+    expect(response.body).toHaveProperty(
+      "message",
+      "User deleted with success"
+    );
   });
-});
+});*/
