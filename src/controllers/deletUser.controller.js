@@ -3,7 +3,6 @@ import deleteUserService from "../services/deletUser.service";
 
 const deleteUserController = (req, res) => {
   
-  
   try{
   const deletedUserid = req.params.uuid;
   const {isAdm, uuid} = req

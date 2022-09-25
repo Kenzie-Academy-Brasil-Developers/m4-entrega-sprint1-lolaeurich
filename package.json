@@ -21,7 +21,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.18.0",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
-    "sucrase": "^3.21.0",
+    "sucrase": "^3.27.0",
     "supertest": "^6.2.3"
   }
 }

@@ -3,9 +3,11 @@ import updateUserService from "../services/updateUser.service";
 
 const updateUserController = (req, res) => {
     try{
+    const uuidReq = req.uuid
     const {uuid} = req.params
-    const {name, email} = req.body
-    const updatedUser = updateUserService(uuid, name, email);
+    const isAdm = req.isAdm
+    const user = req.body
+    const updatedUser = updateUserService(uuidReq, uuid, isAdm, user);
     return res.status(200).json(updatedUser)
     }catch(error){
         return res.status(401).json({error: error.message})
@@ -13,3 +15,4 @@ const updateUserController = (req, res) => {
 }
 
 export default updateUserController
+
